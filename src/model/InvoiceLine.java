@@ -54,7 +54,14 @@ public class InvoiceLine {
 
     @Override
     public String toString() {
-        return ItemHeader.getInvoiceNumber()
-                + "," + ItemName + "," + ItemPrice + "," + ItemCount;
+        return "Line{" + "num=" + ItemHeader.getInvoiceNumber() + ", item=" + ItemName+ ", price=" + ItemPrice + ", count=" + ItemCount + '}';
+    }
+
+    public InvoiceHeader getInvoice() {
+        return ItemHeader;
+    }
+
+    public String getAsCSV() {
+        return ItemHeader.getInvoiceNumber() + "," + ItemName + "," + ItemPrice + "," + ItemCount;
     }
 }

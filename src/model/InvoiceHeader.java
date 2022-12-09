@@ -73,8 +73,12 @@ public class InvoiceHeader {
     }
 
     @Override
-    public String toString(){
-        return  InvoiceNumber+","+ DateFormat.format(InvoiceDate)+ ","+ CustomerName;
+    public String toString() {
+        return "Invoice{" + "num=" + InvoiceNumber + ", date=" + InvoiceDate + ", customer=" + CustomerName + '}';
+    }
+
+    public String getAsCSV() {
+        return InvoiceNumber + "," + InvoiceDate + "," + CustomerName;
     }
 
 

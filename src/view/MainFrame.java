@@ -42,6 +42,9 @@ public class MainFrame extends JFrame {
         if (invoices == null) invoices = new ArrayList<>();
         return invoices;
     }
+    public void setInvoices(ArrayList<InvoiceHeader> invoices) {
+        this.invoices = invoices;
+    }
     public MainFrame(String title) {
         super(title);
         //MenuBar
@@ -69,6 +72,7 @@ public class MainFrame extends JFrame {
         saveMenuItem.addActionListener(controller);
     }
 
+
     public Actions getController(){return controller;}
     public int getNextInvoiceNum() {
         int num = 0;
@@ -84,6 +88,12 @@ public class MainFrame extends JFrame {
             invoiceTableModel = new InvoiceTableModel(getInvoices());
         }
         return invoiceTableModel;
+    }
+    public void setInvoicesTableModel(InvoiceTableModel invoicesTableModel) {
+        this.invoiceTableModel = invoicesTableModel;
+    }
+    public JTable getInvoiceTable() {
+        return invoicesTable;
     }
     public static void main(String[] args) {
         JFrame frame = new MainFrame("Invoice Generator");
