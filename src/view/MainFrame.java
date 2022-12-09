@@ -1,9 +1,12 @@
 package view;
 
+import model.InvoiceHeader;
+import model.InvoiceTableModel;
+
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
-
 
     private JPanel MainPanel;
     private JPanel SecondaryPanel;
@@ -18,7 +21,7 @@ public class MainFrame extends JFrame {
     private JLabel invoiceDate;
     private JLabel custName;
     private JTextField customerNameTextField;
-    private JTextField dateTextfiel;
+    private JTextField dateTextfield;
     private JLabel invoiceToatal;
     private JLabel InvoiceItems;
     private JTable lineTable;
@@ -29,6 +32,10 @@ public class MainFrame extends JFrame {
     private JMenu fileMenu;
     private JMenuItem loadMenuItem;
     private JMenuItem saveMenuItem;
+
+    private InvoiceTableModel invoiceTableModel;
+    private ArrayList<InvoiceHeader> invoices;
+    //private Cntrolller controller = new controller (this);
 
     public MainFrame(String title) {
         super(title);
@@ -41,8 +48,6 @@ public class MainFrame extends JFrame {
         fileMenu.add(saveMenuItem);
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
-
-
 
         this.setSize(1000, 700);
         this.setLocation(400, 150);
