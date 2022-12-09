@@ -9,17 +9,18 @@ public class InvoiceHeader {
 
     private int InvoiceNumber;
     private String CustomerName;
-    private Date InvoiceDate;
+    private String InvoiceDate;
     private ArrayList<InvoiceLine> InvoiceLines;
     private java.text.DateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy");
     public InvoiceHeader(){}
 
-    public InvoiceHeader(int InvoiceNumber, String CustomerName, Date InvoiceDate)
+    public InvoiceHeader(int InvoiceNumber, String CustomerName, String InvoiceDate)
     {
         this.InvoiceNumber= InvoiceNumber;
         this.CustomerName= CustomerName;
         this.InvoiceDate= InvoiceDate;
     }
+
 
     public int getInvoiceNumber()
     {
@@ -39,12 +40,12 @@ public class InvoiceHeader {
         this.CustomerName= CustomerName;
     }
 
-    public Date getInvoiceDate()
+    public String getInvoiceDate()
     {
         return InvoiceDate;
     }
 
-    public void setInvoiceDate(Date InvoiceDate)
+    public void setInvoiceDate(String InvoiceDate)
     {
         this.InvoiceDate=InvoiceDate;
     }
