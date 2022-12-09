@@ -1,15 +1,81 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class InvoiceHeader {
 
-    int invoiceNum;
-    String CustomerName;
+    private int InvoiceNumber;
+    private String CustomerName;
+    private Date InvoiceDate;
+    private ArrayList<InvoiceLine> InvoiceLines;
+    private java.text.DateFormat DateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    public InvoiceHeader(){}
 
-    Date invoiceDate = new Date();
-
-
-    public String getNum() {
+    public InvoiceHeader(int InvoiceNumber, String CustomerName, Date InvoiceDate)
+    {
+        this.InvoiceNumber= InvoiceNumber;
+        this.CustomerName= CustomerName;
+        this.InvoiceDate= InvoiceDate;
     }
+
+    public int getInvoiceNumber()
+    {
+        return InvoiceNumber;
+    }
+    public void setInvoiceNumber(int InvoiceNumber)
+    {
+        this.InvoiceNumber= InvoiceNumber;
+    }
+
+    public String getCustomerName()
+    {
+        return CustomerName;
+    }
+    public void setCustomerName(String CustomerName)
+    {
+        this.CustomerName= CustomerName;
+    }
+
+    public Date getInvoiceDate()
+    {
+        return InvoiceDate;
+    }
+
+    public void setInvoiceDate(Date InvoiceDate)
+    {
+        this.InvoiceDate=InvoiceDate;
+    }
+
+    public ArrayList<InvoiceLine> getInvoiceLines()
+    {
+        if(InvoiceLines == null){
+            InvoiceLines= new ArrayList<>();
+        }
+        return InvoiceLines;
+    }
+
+    public void setInvoiceLines(ArrayList<InvoiceLine> InvoiceLines)
+    {
+        this.InvoiceLines= InvoiceLines;
+    }
+    public double getInvoiceTotal()
+    {
+        double InvoiceTotal = 0.0;
+        for (int i = 0; i< getInvoiceLines().size(); i++)
+        {
+            InvoiceTotal += getInvoiceLines().get(i).getLineTotal();
+        }
+        return InvoiceTotal;
+    }
+
+    @Override
+    public String toString(){
+        return  InvoiceNumber+","+ DateFormat.format(InvoiceDate)+ ","+ CustomerName;
+    }
+
+
 }
+
