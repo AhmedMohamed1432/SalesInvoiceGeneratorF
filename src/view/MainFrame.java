@@ -49,6 +49,10 @@ public class MainFrame extends JFrame {
         super(title);
         //MenuBar
         this.setupMenuBar();
+        saveBtn.setActionCommand("Save");
+        createInvoiceBtn.setActionCommand("Create New Invoice");
+        deleteInvoiceBtn.setActionCommand("Delete Invoice");
+        canselBtn.setActionCommand("Cancel");
         saveBtn.addActionListener(controller);
         createInvoiceBtn.addActionListener(controller);
         deleteInvoiceBtn.addActionListener(controller);
@@ -68,6 +72,8 @@ public class MainFrame extends JFrame {
         fileMenu.add(saveMenuItem);
         menuBar.add(fileMenu);
         setJMenuBar(menuBar);
+        loadMenuItem.setActionCommand("Load");
+        saveMenuItem.setActionCommand("Save");
         loadMenuItem.addActionListener(controller);
         saveMenuItem.addActionListener(controller);
     }

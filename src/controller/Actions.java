@@ -200,6 +200,16 @@ public class Actions implements ActionListener {
         }
 
     }
-    private void deleteInvoice(){}
-    private void cancel(){}
+    private void deleteInvoice(){
+        int selectedRow = frame.getInvoiceTable().getSelectedRow();
+        if (selectedRow != -1) {
+            frame.getInvoices().remove(selectedRow);
+            frame.getInvoicesTableModel().fireTableDataChanged();
+        }
+    }
+    private void cancel(){
+        frame.setVisible(false);
+        frame.dispose();
+        frame = null;
+    }
 }
