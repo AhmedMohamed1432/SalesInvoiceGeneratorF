@@ -14,9 +14,9 @@ import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
     
-public class invoiceFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
-    public invoiceFrame() {
+    public MainFrame() {
         initComponents();
     }
 
@@ -221,17 +221,10 @@ public class invoiceFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LoadMenuActionPerformed
 
-    private void NewInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewInvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NewInvActionPerformed
+    private void NewInvActionPerformed(java.awt.event.ActionEvent evt) { }
 
-    private void cancelbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelbutActionPerformed
-
-    private void SavebuttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebuttActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SavebuttActionPerformed
+    private void cancelbutActionPerformed(java.awt.event.ActionEvent evt) {}
+    private void SavebuttActionPerformed(java.awt.event.ActionEvent evt) {    }
 
     /**
      * @param args the command line arguments
@@ -250,20 +243,20 @@ public class invoiceFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                invoiceFrame framex = new invoiceFrame();
+                MainFrame framex = new MainFrame();
                   framex.setVisible(true);
                   
             }

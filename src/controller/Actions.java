@@ -1,12 +1,11 @@
 package controller;
 
-
 import model.InvoiceHeader;
 import model.InvoiceLine;
 import model.InvoiceTableModel;
 import model.LineTableModel;
 import view.InvoiceDialog;
-import view.invoiceFrame;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,9 +22,9 @@ import java.util.Date;
 import java.util.List;
 
 public class Actions implements ActionListener {
-    private invoiceFrame frame;
+    private MainFrame frame;
     private InvoiceDialog invoiceDialog;
-    public Actions (invoiceFrame frame){
+    public Actions (MainFrame frame){
         this.frame = frame;
     }
     @Override
@@ -82,12 +81,12 @@ public class Actions implements ActionListener {
                     String str2 = arr[1];
                     String str3 = arr[2];
                     int code = Integer.parseInt(str1);
-                    Date invoiceDate = invoiceFrame.dateFormat.parse(str2);
+                    Date invoiceDate = MainFrame.dateFormat.parse(str2);
                     InvoiceHeader header = new InvoiceHeader(code, str3, invoiceDate);
                     invoiceHeaders.add(header);
                 }
                 frame.setInvoicesArray(invoiceHeaders);
-                JOptionPane.showMessageDialog(frame, "Please Select Items File");
+                JOptionPane.showMessageDialog(frame, "Select Line File");
                 result = fileChooser.showOpenDialog(frame);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     File lineFile = fileChooser.getSelectedFile();
@@ -111,12 +110,12 @@ public class Actions implements ActionListener {
                 InvoiceTableModel headerTable = new InvoiceTableModel(invoiceHeaders);
                 frame.setInvoiceTableModel(headerTable);
                 frame.getheaderTable().setModel(headerTable);
-                System.out.println("files read");
             }
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (ParseException ex) {
+        }
+        catch (ParseException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -128,27 +127,17 @@ public class Actions implements ActionListener {
             int result = fcc.showSaveDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File headerFile = fcc.getSelectedFile();
-                FileWriter hfwc = new FileWriter(headerFile+".csv");
+                FileWriter headercsv = new FileWriter(headerFile+".csv");
                 String headers = "";
-                String lines = "";
                 for (InvoiceHeader invoice : invoicesArray) {
-                    headers += invoice.toString();
+                    headers += invoice.getAsCSV();
                     headers += "\n";
-                    for (InvoiceLine line : invoice.getInvoiceLines()) {
-                        lines += line.toString();
-                        lines += "\n";
-                    }
                 }
 
                 headers = headers.substring(0, headers.length()-1);
-                lines = lines.substring(0, lines.length()-1);
-                File lineFile = fcc.getSelectedFile();
-                FileWriter lfwc = new FileWriter(lineFile+".csv");
                 try
-                { hfwc.write(headers);
-                    lfwc.write(lines);
-                    hfwc.close();
-                    lfwc.close();
+                { headercsv.write(headers);
+                    headercsv.close();
                     JOptionPane.showMessageDialog(frame, "File Saved Successfully!");
                 }catch(IOException ex){
                     JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -160,7 +149,7 @@ public class Actions implements ActionListener {
     }
     private void createNewInvoice(){
         if(str1 == null){
-            JOptionPane.showMessageDialog(frame, "Please Select .CSV File!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Select file in correct format!", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             invoiceDialog = new InvoiceDialog(frame);
             invoiceDialog.setVisible(true);
@@ -178,10 +167,10 @@ public class Actions implements ActionListener {
         String str = invoiceDialog.getInvDateField().getText();
         Date d = new Date();
         try {
-            d = invoiceFrame.dateFormat.parse(str);
+            d = MainFrame.dateFormat.parse(str);
         }
         catch (ParseException ex) {
-            JOptionPane.showMessageDialog(frame, "Cannot parse date, resetting to today.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Date isn't correct, resetting to today.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
         }
 
         int invNum = 0;
@@ -203,7 +192,6 @@ public class Actions implements ActionListener {
         if (selectedInvoiceIndex != -1) {
             frame.getInvoicesArray().remove(selectedInvoiceIndex);
             frame.getInvoiceTableModel().fireTableDataChanged();
-
             frame.getlineTable().setModel(new LineTableModel(null));
             frame.setLinesArray(null);
             frame.getCustNameLbl().setText("");

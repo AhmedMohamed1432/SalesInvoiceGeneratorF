@@ -16,7 +16,7 @@ public class InvoiceDialog extends JDialog {
     private JButton okBtn;
     private JButton cancelBtn;
 
-    public InvoiceDialog(invoiceFrame frame) {
+    public InvoiceDialog(MainFrame frame) {
         custNameLbl = new JLabel("Customer Name:");
         custNameField = new JTextField(20);
         invDateLbl = new JLabel("Invoice Date:");
