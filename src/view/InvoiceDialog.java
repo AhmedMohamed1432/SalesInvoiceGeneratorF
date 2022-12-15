@@ -29,6 +29,7 @@ public class InvoiceDialog extends JDialog {
 
         okBtn.addActionListener(frame.getActions());
         cancelBtn.addActionListener(frame.getActions());
+        setTitle("Create New Invoice:");
         setLayout(new GridLayout(3, 2));
 
         add(custNameLbl);

@@ -230,7 +230,7 @@ public class Actions implements ActionListener {
         catch (ParseException ex) {
             JOptionPane.showMessageDialog(frame, "Date isn't correct, resetting to today.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
         }
-        saveFile();
+        //saveFile();
     }
     private void cancel(){
         frame.setVisible(false);
