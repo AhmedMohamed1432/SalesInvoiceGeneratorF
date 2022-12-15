@@ -82,7 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setText("Customer Name");
 
         jLabel4.setText("Invoice Number");
-        
+
 
         Datetextfield.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
