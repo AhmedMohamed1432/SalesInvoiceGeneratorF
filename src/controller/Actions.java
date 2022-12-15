@@ -37,8 +37,14 @@ public class Actions implements ActionListener {
                 loadFile();
                 break;
             case "Save file":
-            case "Save":
                 saveFile();
+                break;
+            case "Save":
+                try {
+                    saveInvoice();
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
                 break;
             case "Create New Invoice":
                 createNewInvoice();
@@ -152,6 +158,7 @@ public class Actions implements ActionListener {
             JOptionPane.showMessageDialog(frame, "Select file in correct format!", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             invoiceDialog = new InvoiceDialog(frame);
+            invoiceDialog.setLocation(400,400);
             invoiceDialog.setVisible(true);
         }
     }
@@ -170,7 +177,7 @@ public class Actions implements ActionListener {
             d = MainFrame.dateFormat.parse(str);
         }
         catch (ParseException ex) {
-            JOptionPane.showMessageDialog(frame, "Date isn't correct, resetting to today.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Date isn't correct.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
         }
 
         int invNum = 0;
@@ -199,6 +206,31 @@ public class Actions implements ActionListener {
             frame.getInvTotalIbl().setText("");
             frame.getDateLbl().setText("");
         }
+    }
+    private void saveInvoice() throws ParseException {
+        int selectedInvIndex = frame.getheaderTable().getSelectedRow();
+        if (selectedInvIndex != -1) {
+            InvoiceHeader selectedInv = frame.getInvoicesArray().get(selectedInvIndex);
+            ArrayList<InvoiceLine> lines = selectedInv.getInvoiceLines();
+            LineTableModel lineTable = new LineTableModel(lines);
+            frame.setLinesArray(lines);
+            frame.getlineTable().setModel(lineTable);
+            String custName =frame.getCustNameLbl().getText();
+            String da = frame.getDateLbl().getText();
+            Date daDate = MainFrame.dateFormat.parse(da);
+            selectedInv.setCustomerName(custName);
+            selectedInv.setInvoiceDate(daDate);
+        }
+        String da = frame.getDateLbl().getText();
+
+        Date d = new Date();
+        try {
+            d = MainFrame.dateFormat.parse(da);
+        }
+        catch (ParseException ex) {
+            JOptionPane.showMessageDialog(frame, "Date isn't correct, resetting to today.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
+        }
+        saveFile();
     }
     private void cancel(){
         frame.setVisible(false);

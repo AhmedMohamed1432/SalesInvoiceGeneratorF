@@ -31,13 +31,12 @@ public class InvoiceDialog extends JDialog {
         cancelBtn.addActionListener(frame.getActions());
         setLayout(new GridLayout(3, 2));
 
-        add(invDateLbl);
-        add(invDateField);
         add(custNameLbl);
         add(custNameField);
+        add(invDateLbl);
+        add(invDateField);
         add(okBtn);
         add(cancelBtn);
-
         pack();
 
     }
