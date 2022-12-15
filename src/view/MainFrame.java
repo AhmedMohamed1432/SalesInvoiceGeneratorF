@@ -14,9 +14,9 @@ import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
     
-public class invoiceFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame {
 
-    public invoiceFrame() {
+    public MainFrame() {
         initComponents();
     }
 
@@ -36,8 +36,8 @@ public class invoiceFrame extends javax.swing.JFrame {
         jLabel3 = new JLabel();
         jLabel4 = new JLabel();
         NumLabel = new JLabel();
-        DateLabel = new JLabel();
-        CustomerLabel = new JLabel();
+        Datetextfield = new JTextField();
+        Customertextfield= new JTextField();
         TotalLabel = new JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lineTable = new JTable();
@@ -76,24 +76,17 @@ public class invoiceFrame extends javax.swing.JFrame {
         DltInv.setText("Delete Invoice");
 
         jLabel1.setText("Invoice Date");
-        jLabel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setText("Invoice Total");
-        jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel3.setText("Customer Name");
-        jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setText("Invoice Number");
-        jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        NumLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        DateLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Datetextfield.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        CustomerLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        TotalLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Customertextfield.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,7 +151,7 @@ public class invoiceFrame extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(NumLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(DateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Datetextfield, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +163,7 @@ public class invoiceFrame extends javax.swing.JFrame {
                                     .addGap(41, 41, 41)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(TotalLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                        .addComponent(CustomerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(Customertextfield, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
@@ -191,11 +184,11 @@ public class invoiceFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(DateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Datetextfield, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CustomerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Customertextfield, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,27 +214,14 @@ public class invoiceFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LoadMenuActionPerformed
 
-    private void NewInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewInvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NewInvActionPerformed
+    private void NewInvActionPerformed(java.awt.event.ActionEvent evt) { }
 
-    private void cancelbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelbutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelbutActionPerformed
+    private void cancelbutActionPerformed(java.awt.event.ActionEvent evt) {}
+    private void SavebuttActionPerformed(java.awt.event.ActionEvent evt) {    }
 
-    private void SavebuttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebuttActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SavebuttActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -250,29 +230,32 @@ public class invoiceFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(invoiceFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                invoiceFrame framex = new invoiceFrame();
-                  framex.setVisible(true);
+                MainFrame program = new MainFrame();
+                program.setTitle("Sales Invoice Generator");
+                program.setLocation(200,200);
+                program.setVisible(true);
                   
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel CustomerLabel;
-    private JLabel DateLabel;
+
+    private JTextField Datetextfield;
+    private JTextField Customertextfield;
     private javax.swing.JButton DltInv;
     private javax.swing.JMenuItem LoadMenu;
     private javax.swing.JButton NewInv;
@@ -341,12 +324,12 @@ public class invoiceFrame extends javax.swing.JFrame {
         return lineTable;
     }
 
-    public JLabel getCustNameLbl() {
-        return CustomerLabel;
+    public JTextField getCustNameLbl() {
+        return Customertextfield;
     }
 
-    public JLabel getDateLbl() {
-        return DateLabel;
+    public JTextField getDateLbl() {
+        return Datetextfield;
     }
 
     public JLabel getInvNumLbl() {
