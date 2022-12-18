@@ -98,14 +98,14 @@ public class MainFrame extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(lineTable);
 
-        Savebutt.setText("Save");
+        Savebutt.setText("Create New Item");
         Savebutt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SavebuttActionPerformed(evt);
             }
         });
 
-        cancelbut.setText("Cancel");
+        cancelbut.setText("Delete Item");
         cancelbut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelbutActionPerformed(evt);
@@ -167,8 +167,8 @@ public class MainFrame extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(Savebutt, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addComponent(Savebutt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(cancelbut, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
         );
@@ -280,8 +280,10 @@ public class MainFrame extends javax.swing.JFrame {
     private InvoiceTableModel InvoiceTableModel;
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private TableListener selectionListener = new TableListener(this);
-
-    
+    public ArrayList<InvoiceHeader> getInvoices() {
+        if (invoicesArray == null) invoicesArray = new ArrayList<>();
+        return invoicesArray;
+    }
 
     public ArrayList<InvoiceLine> getLinesArray() {
         return linesArray;
