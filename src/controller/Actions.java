@@ -136,26 +136,32 @@ public class Actions implements ActionListener {
 
     private void saveFile(){
         ArrayList<InvoiceHeader> invoicesArray = frame.getInvoicesArray();
-        JFileChooser fcc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();
         try {
-            int result = fcc.showSaveDialog(frame);
+            int result = fc.showSaveDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
-                File headerFile = fcc.getSelectedFile();
-                FileWriter headercsv = new FileWriter(headerFile+".csv");
+                File headerFile = fc.getSelectedFile();
+                FileWriter hfw = new FileWriter(headerFile+".csv");
                 String headers = "";
+                String lines = "";
                 for (InvoiceHeader invoice : invoicesArray) {
                     headers += invoice.getAsCSV();
                     headers += "\n";
+                    for (InvoiceLine line : invoice.getInvoiceLines()) {
+                        lines += line.getAsCSV();
+                        lines += "\n";
+                    }
                 }
 
                 headers = headers.substring(0, headers.length()-1);
-                try
-                { headercsv.write(headers);
-                    headercsv.close();
-                    JOptionPane.showMessageDialog(frame, "File Saved Successfully!");
-                }catch(IOException ex){
-                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                lines = lines.substring(0, lines.length()-1);
+                result = fc.showSaveDialog(frame);
+                File lineFile = fc.getSelectedFile();
+                FileWriter lfw = new FileWriter(lineFile+".csv");
+                hfw.write(headers);
+                lfw.write(lines);
+                hfw.close();
+                lfw.close();
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -246,6 +252,7 @@ public class Actions implements ActionListener {
         }
         else {
             lineDialog = new LineDialog(frame);
+
             lineDialog.setLocation(400,400);
             lineDialog.setVisible(true);
         }

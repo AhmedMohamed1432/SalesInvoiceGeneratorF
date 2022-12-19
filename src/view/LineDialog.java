@@ -31,6 +31,7 @@ public class LineDialog extends JDialog {
 
         okBtn.addActionListener(frame.getActions());
         cancelBtn.addActionListener(frame.getActions());
+        setTitle("Add New Item:");
         setLayout(new GridLayout(4, 2));
 
         add(itemNameLbl);
