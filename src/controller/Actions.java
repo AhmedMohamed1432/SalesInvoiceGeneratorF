@@ -5,6 +5,7 @@ import model.InvoiceLine;
 import model.InvoiceTableModel;
 import model.LineTableModel;
 import view.InvoiceDialog;
+import view.LineDialog;
 import view.MainFrame;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ import java.util.List;
 public class Actions implements ActionListener {
     private MainFrame frame;
     private InvoiceDialog invoiceDialog;
+    private LineDialog lineDialog;
     public Actions (MainFrame frame){
         this.frame = frame;
     }
@@ -36,10 +38,10 @@ public class Actions implements ActionListener {
             case "Load file":
                 loadFile();
                 break;
-            case "Save file":
-                saveFile();
+            case "Create New Item":
+                NewItem();
                 break;
-            case "Save":
+            case "Save file":
                 try {
                     saveInvoice();
                 } catch (ParseException ex) {
@@ -59,8 +61,14 @@ public class Actions implements ActionListener {
             case "Delete Invoice":
                 deleteInvoice();
                 break;
-            case "Cancel":
-                cancel();
+            case "Delete Item":
+                DeleteItem();
+                break;
+            case "createLineOK":
+                createLineOK();
+                break;
+            case "createLineCancel":
+                createLineCancel();
                 break;
             default:
                 break;
@@ -128,26 +136,32 @@ public class Actions implements ActionListener {
 
     private void saveFile(){
         ArrayList<InvoiceHeader> invoicesArray = frame.getInvoicesArray();
-        JFileChooser fcc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();
         try {
-            int result = fcc.showSaveDialog(frame);
+            int result = fc.showSaveDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
-                File headerFile = fcc.getSelectedFile();
-                FileWriter headercsv = new FileWriter(headerFile+".csv");
+                File headerFile = fc.getSelectedFile();
+                FileWriter hfw = new FileWriter(headerFile+".csv");
                 String headers = "";
+                String lines = "";
                 for (InvoiceHeader invoice : invoicesArray) {
                     headers += invoice.getAsCSV();
                     headers += "\n";
+                    for (InvoiceLine line : invoice.getInvoiceLines()) {
+                        lines += line.getAsCSV();
+                        lines += "\n";
+                    }
                 }
 
                 headers = headers.substring(0, headers.length()-1);
-                try
-                { headercsv.write(headers);
-                    headercsv.close();
-                    JOptionPane.showMessageDialog(frame, "File Saved Successfully!");
-                }catch(IOException ex){
-                    JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                lines = lines.substring(0, lines.length()-1);
+                result = fc.showSaveDialog(frame);
+                File lineFile = fc.getSelectedFile();
+                FileWriter lfw = new FileWriter(lineFile+".csv");
+                hfw.write(headers);
+                lfw.write(lines);
+                hfw.close();
+                lfw.close();
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -230,11 +244,53 @@ public class Actions implements ActionListener {
         catch (ParseException ex) {
             JOptionPane.showMessageDialog(frame, "Date isn't correct, resetting to today.", "Invalid date format", JOptionPane.ERROR_MESSAGE);
         }
-        //saveFile();
+        saveFile();
     }
-    private void cancel(){
-        frame.setVisible(false);
-        frame.dispose();
-        frame = null;
+    public void NewItem(){
+        if(str1 == null){
+            JOptionPane.showMessageDialog(frame, "Select file in correct format!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            lineDialog = new LineDialog(frame);
+
+            lineDialog.setLocation(400,400);
+            lineDialog.setVisible(true);
+        }
+    }
+
+    private void DeleteItem(){
+        int selectedRow = frame.getlineTable().getSelectedRow();;
+
+        if (selectedRow != -1) {
+            LineTableModel linesTableModel = (LineTableModel) frame.getlineTable().getModel();
+            linesTableModel.getLines().remove(selectedRow);
+            linesTableModel.fireTableDataChanged();
+            frame.getInvoiceTableModel().fireTableDataChanged();
+        }
+    }
+    private void createLineOK() {
+        String item = lineDialog.getItemNameField().getText();
+        String countStr = lineDialog.getItemCountField().getText();
+        String priceStr = lineDialog.getItemPriceField().getText();
+        int count = Integer.parseInt(countStr);
+        double price = Double.parseDouble(priceStr);
+        int selectedInvoice = frame.getheaderTable().getSelectedRow();
+        if (selectedInvoice != -1) {
+            InvoiceHeader invoice = frame.getInvoices().get(selectedInvoice);
+            InvoiceLine line = new InvoiceLine(item, price, count, invoice);
+            invoice.getInvoiceLines().add(line);
+            LineTableModel linesTableModel = (LineTableModel) frame.getlineTable().getModel();
+            linesTableModel.fireTableDataChanged();
+            frame.getInvoiceTableModel().fireTableDataChanged();
+        }
+        lineDialog.setVisible(false);
+        lineDialog.dispose();
+        lineDialog = null;
+    }
+
+    private void createLineCancel() {
+        lineDialog.setVisible(false);
+        lineDialog.dispose();
+        lineDialog = null;
     }
 }
